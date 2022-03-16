@@ -9,8 +9,11 @@ import {
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import {  Card, Button, Icon } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 
 const Bar = (props) => {
+
+  const navigations = useNavigation();
   const [pokemons, setPokemons] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -24,8 +27,10 @@ const Bar = (props) => {
       .then((pokemons) => setPokemons(pokemons.results));
   };
 
+  const navigation = useNavigation();
+
   return (
-    <View>
+    <View style={{backgroundColor : 'darkred'}}>
       <View >
         <SearchBar
           style={styles.seeker}
@@ -55,9 +60,24 @@ const Bar = (props) => {
                       uri: `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${pokemon.name}.png`,
                     }}
                   />
-                  <Button 
-                    title='Stats'
-                  />
+                 <TouchableOpacity
+                 onPress={() => navigations.navigate("Card")}
+                 style={{
+                   backgroundColor : 'black',
+                   width : '50%',
+                   alignSelf: 'center',
+                   borderRadius : 10,
+                 }}
+                 >
+                   <Text 
+                   style={{
+                     fontSize : 15,
+                     textAlign: 'center',
+                     color : 'white'
+
+                   }}
+                   >Stats</Text>
+                 </TouchableOpacity>
                 </Card>
             
               );
