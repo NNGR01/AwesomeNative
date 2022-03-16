@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import { SearchBar } from "react-native-elements";
+import {  Card, Button, Icon } from 'react-native-elements';
 
 const Bar = (props) => {
   const [pokemons, setPokemons] = useState([]);
@@ -25,7 +26,7 @@ const Bar = (props) => {
 
   return (
     <View>
-      <View>
+      <View >
         <SearchBar
           style={styles.seeker}
           placeholder="Search Pokemons"
@@ -42,7 +43,61 @@ const Bar = (props) => {
             )
             .map((pokemon, index) => {
               return (
-                <TouchableOpacity
+             
+       
+                <Card key={index} style={{backgroundColor: 'red'}}>
+                  <Card.Title >{pokemon.name}</Card.Title>
+                  <Card.Divider />
+                  <Card.Image 
+                  
+                    style={styles.card}
+                    source={{
+                      uri: `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${pokemon.name}.png`,
+                    }}
+                  />
+                  <Button 
+                    title='Stats'
+                  />
+                </Card>
+            
+              );
+            })}
+        </View>
+      </ScrollView>
+    </View>
+  );
+};
+const styles = StyleSheet.create({
+  seeker: {
+    
+    marginTop: 20,
+    width: "50%",
+    display: "flex",
+    height: 20,
+    justifyContent: "flex-start",
+    marginBottom: 20,
+   
+  },
+  box: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: 30,
+  },
+  card: {
+  
+    width: 100,
+    height: 100,
+  },
+ 
+});
+
+export default Bar;
+
+/* props.navigation.navigate('Details',{pokemon : pokemon.name} */
+
+       {/*   <TouchableOpacity
                   activeOpacity={0.5}
                   key={index}
                   style={styles.box}
@@ -55,43 +110,4 @@ const Bar = (props) => {
                     }}
                   />
                   <Text style={styles.textCard}>{pokemon.name} </Text>
-                </TouchableOpacity>
-              );
-            })}
-        </View>
-      </ScrollView>
-    </View>
-  );
-};
-const styles = StyleSheet.create({
-  seeker: {
-    marginTop: 20,
-    width: "50%",
-    display: "flex",
-    height: 20,
-    justifyContent: "center",
-    marginBottom: 15,
-    alignItems: "center",
-  },
-  box: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  card: {
-    borderBottomWidth: 1,
-    borderBottomColor: "black",
-    width: 100,
-    height: 100,
-  },
-  textCard: {
-    color: "white",
-    right: "70%",
-  },
-});
-
-export default Bar;
-
-/* props.navigation.navigate('Details',{pokemon : pokemon.name} */
+                </TouchableOpacity> */}
